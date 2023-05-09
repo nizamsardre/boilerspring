@@ -1,6 +1,7 @@
 package com.example.demo.modules.user.controller;
 
 
+import com.example.demo.base.BaseResponse;
 import com.example.demo.modules.user.dto.request.UserRequest;
 import com.example.demo.modules.user.model.UserModel;
 import com.example.demo.modules.user.service.UserService;
@@ -17,12 +18,16 @@ public class UserController {
     private final UserService userService;
 
     @PostMapping
-    public String registerUser(@RequestBody UserRequest registrationRequest){
+    public BaseResponse<UserModel> registerUser(@RequestBody UserRequest registrationRequest){
+        BaseResponse<UserModel> response = new BaseResponse<>();
         UserModel user = userService.registerUser(registrationRequest);
-        return "Success";
+        response.setData(user);
+        return response;
     }
     @GetMapping
-    public List<UserModel> getUsers(){
-        return userService.getUsers();
+    public BaseResponse<List<UserModel>> getUsers(){
+        BaseResponse<List<UserModel>> response = new BaseResponse<>();
+        response.setData(userService.getUsers());
+        return response;
     }
 }
