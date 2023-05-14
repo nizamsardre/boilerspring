@@ -17,11 +17,11 @@ public class LogAop {
 
     Logger log = LoggerFactory.getLogger(LogAop.class);
     //@Pointcut("execution(* com.example.demo.modules..controller.*.*(..))")
-    @Pointcut("within(com.example.demo.modules..service.*)")
+    //@Pointcut("within(com.example.demo.modules..service.*)")
     //@Pointcut("this(com.example.demo.modules.service.DepartmentService)")
-    public void loggingPointCut(){}
+   //public void loggingPointCut(){}
 
-    @Before("loggingPointCut()")
+    @Before(value = "com.example.demo.aop.PointcutAop.mainPointcut()")
     public void before( JoinPoint joinPoint ){
         log.info("Before method invoked::"+joinPoint.getSignature());
     }
