@@ -1,6 +1,7 @@
 package com.example.demo.modules.user.service;
 
 
+import com.example.demo.exception.UserNotFoundException;
 import com.example.demo.modules.user.dto.request.UserRequest;
 import com.example.demo.modules.user.model.UserModel;
 import com.example.demo.modules.user.repository.UserRepository;
@@ -33,5 +34,14 @@ public class UserService {
 //        newUser.setPassword(passwordEncoder.encode(request.password()));
 //        newUser.setRole(request.role());
         return userRepository.save(newUser);
+    }
+
+    public UserModel getUser(long id) throws UserNotFoundException {
+        UserModel user= userRepository.findById(id);
+        if(user!=null){
+            return user;
+        }else{
+            throw new UserNotFoundException("user not found with id : "+id);
+        }
     }
 }

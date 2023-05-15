@@ -2,8 +2,9 @@ package com.example.demo.aop;
 
 import org.aspectj.lang.annotation.Pointcut;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.stereotype.Component;
 
-@Configuration
+@Component
 public class PointcutAop {
     @Pointcut("within(@org.springframework.web.bind.annotation.RestController *)")
     public void controllerPointcut(){

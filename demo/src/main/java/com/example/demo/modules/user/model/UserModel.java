@@ -23,6 +23,10 @@ public class UserModel {
     private String lastName;
 //    @NaturalId(mutable = true)
 //    private String email;
+//    private String mobile;
+//    private String gender;
+//    private int age;
+//    private String nationality;
 //    private String password;
 //    private String role;
     private boolean isEnabled = false;
