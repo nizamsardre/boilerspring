@@ -27,7 +27,7 @@ import java.util.List;
 @RequestMapping("/user")
 public class UserController {
     private final UserService userService;
-    private final RestFeign restFeign;
+
 
     @PostMapping
     public BaseResponse<UserModel> registerUser(@RequestBody @Valid UserRequest registrationRequest){
@@ -51,16 +51,9 @@ public class UserController {
     @GetMapping("/send-sms")
     public BaseResponse<SmsResponse> sendSms() throws JAXBException {
         BaseResponse<SmsResponse> response = new BaseResponse<>();
-        String s = restFeign.smsSend();
-
-
-        StringReader sr = new StringReader(s);
-        JAXBContext jaxbContext = JAXBContext.newInstance(SmsResponse.class);
-        Unmarshaller unmarshaller = jaxbContext.createUnmarshaller();
-        SmsResponse smsResponse = (SmsResponse) unmarshaller.unmarshal(sr);
+        SmsResponse smsResponse = userService.sendSms();
         response.setData(smsResponse);
         return response;
-       // return  restFeign.smsSend();
 
     }
 }
