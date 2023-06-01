@@ -4,7 +4,9 @@ package com.example.demo.modules.user.service;
 import com.example.demo.exception.UserNotFoundException;
 import com.example.demo.modules.user.dto.request.UserRequest;
 import com.example.demo.modules.user.dto.response.SmsResponse;
+import com.example.demo.modules.user.model.SmsLog;
 import com.example.demo.modules.user.model.UserModel;
+import com.example.demo.modules.user.repository.SmsRepository;
 import com.example.demo.modules.user.repository.UserRepository;
 import com.example.demo.rest.RestFeign;
 import jakarta.xml.bind.JAXBContext;
@@ -21,10 +23,14 @@ import java.util.List;
 public class UserService {
 
     private final UserRepository userRepository;
+    private final SmsRepository smsRepository;
     private final RestFeign restFeign;
 
     public List<UserModel> getUsers() {
         return userRepository.findAll();
+    }
+    public List<SmsLog> getSmses() {
+        return smsRepository.findAll();
     }
 
 
@@ -58,6 +64,10 @@ public class UserService {
         JAXBContext jaxbContext = JAXBContext.newInstance(SmsResponse.class);
         Unmarshaller unmarshaller = jaxbContext.createUnmarshaller();
         SmsResponse smsResponse = (SmsResponse) unmarshaller.unmarshal(sr);
+        var newSms = new SmsLog();
+        newSms.setSmsText(smsResponse.getSmsInfo().getSmsText());
+        newSms.setMsisdn(smsResponse.getSmsInfo().getMsisdn());
+        smsRepository.save(newSms);
         return  smsResponse;
     }
 }

@@ -12,7 +12,7 @@ public interface RestFeign {
     @RequestMapping(method = RequestMethod.GET, value = "posts")
     List<PostResponse> getPosts();
 
-    @PostMapping(value = "/pushapi/dynamic/server.php?user=metlifeapi&pass=c=78V022&sid=metlifeapi&sms={message}&msisdn=8801912821380&csmsid=123456789")
+    @PostMapping(value = "sms={message}&msisdn=8801912821380&csmsid=123456789")
     String smsSend(@PathVariable("message") String  message);
 
 //    @RequestMapping(method = RequestMethod.GET, value = "/posts/{postId}", produces = "application/json")

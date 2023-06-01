@@ -4,10 +4,14 @@ spring:
   profile:
     active: stage
   datasource:
-    url: jdbc:mysql://localhost:3306/boiler
-    username: root
-    password: 123456
-    driver-class-name: com.mysql.cj.jdbc.Driver
+#    url: jdbc:mysql://localhost:3306/boiler
+#    username: root
+#    password: 123456
+#    driver-class-name: com.mysql.cj.jdbc.Driver
+    driverClassName: com.microsoft.sqlserver.jdbc.SQLServerDriver
+    url: jdbc:sqlserver://10.68.13.19:7565;databaseName=ServiceRequestManagement;trustServerCertificate=true;
+    username: sas
+    password: Metlife123
   jpa:
     show-sql: true
     hibernate:

@@ -6,6 +6,7 @@ import com.example.demo.exception.UserNotFoundException;
 import com.example.demo.modules.user.dto.request.UserRequest;
 import com.example.demo.modules.user.dto.response.PostResponse;
 import com.example.demo.modules.user.dto.response.SmsResponse;
+import com.example.demo.modules.user.model.SmsLog;
 import com.example.demo.modules.user.model.UserModel;
 import com.example.demo.modules.user.service.UserService;
 import com.example.demo.rest.RestFeign;
@@ -37,9 +38,9 @@ public class UserController {
         return response;
     }
     @GetMapping
-    public BaseResponse<List<UserModel>> getUsers(){
-        BaseResponse<List<UserModel>> response = new BaseResponse<>();
-        response.setData(userService.getUsers());
+    public BaseResponse<List<SmsLog>> getUsers(){
+        BaseResponse<List<SmsLog>> response = new BaseResponse<>();
+        response.setData(userService.getSmses());
         return response;
     }
 
